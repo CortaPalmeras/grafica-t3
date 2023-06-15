@@ -25,7 +25,10 @@ ind_lines = (0,1, 1,2, 2,3, 3,0, 4,0, 4,1, 4,2, 4,3, 5,0,5,1, 5,2, 5,3,
             6,7, 7,8, 8,6, 6,9, 9,7, 9,8,
             10,11, 11,12, 12,10, 10,13, 13,11, 13,12,
             14,15, 15,16, 16,17, 17,18, 18,19, 15,18,
-            24,21, 25,24, 24,23, 23,22, 22,21, 21,20)
+            24,21, 25,24, 24,23, 23,22, 22,21, 21,20) 
+
+#crear suelo
+
 
 win = pyglet.window.Window()
 win.set_exclusive_mouse(True)
@@ -78,7 +81,7 @@ def on_draw():
     if forward:
         if position[1]<=0 and phi<0:
             direction[1] = 0
-        position += direction * 0.05
+        position += direction * 0.05   # pasar todo ewsto a una funcion update()
 
     elif backward:
         if (position[1]<=0 and phi>0):
@@ -87,7 +90,7 @@ def on_draw():
 
     transform = tr.translate(*position) @ tr.rotationY(theta) @ tr.rotationX(phi)
     glUniformMatrix4fv(rot_loc, 1, GL_TRUE, transform)
-
+    
 @win.event
 def on_mouse_motion(x, y, dx, dy):
     global phi
